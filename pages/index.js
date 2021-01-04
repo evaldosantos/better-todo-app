@@ -10,7 +10,7 @@ export default function Home() {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;700;900&display=swap" rel="stylesheet"></link>
       </Head>
-      <h1 class="title">Stuff I need to do</h1>
+      <h1 className="title">Stuff I need to do</h1>
       
       <div className="all-tasks">
         <h2 className="task-list-title">My lists</h2>
@@ -21,7 +21,7 @@ export default function Home() {
         </ul>
 
         <form action="">
-          <input type="text" class="new-list" name="" id="" placeholder="new list name" aria-label="new list name" />
+          <input type="text" className="new-list" name="" id="" placeholder="new list name" aria-label="new list name" />
           <button className="btn btn-list" aria-label="create new list">+</button>
         </form>
       </div>
@@ -55,7 +55,7 @@ export default function Home() {
 
           <div className="new-task-creator">
             <form action="">
-              <input type="text" name="" id="" class="new-task" placeholder="new task name" aria-label="new task name" />
+              <input type="text" name="" id="" className="new-task" placeholder="new task name" aria-label="new task name" />
               <button className="btn btn-task" aria-label="create new task">+</button>
             </form>
           </div>
