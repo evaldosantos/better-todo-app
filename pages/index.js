@@ -10,9 +10,9 @@ export default function Home() {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;700;900&display=swap" rel="stylesheet"></link>
       </Head>
-      <h1 className="title">Stuff I need to do</h1>
+      <h1 className={styles['title']}>Stuff I need to do</h1>
       
-      <div className="all-tasks">
+      <div className={styles['all-tasks']}>
         <h2 className="task-list-title">My lists</h2>
         <ul className="task-list">
           <li className="active-list">Youtube</li>
@@ -26,7 +26,7 @@ export default function Home() {
         </form>
       </div>
 
-      <div className="todo-list">
+      <div className={styles['todo-list']}>
         <div className="todo-header">
           <h2 className="list-title">Youtube</h2>
           <p className="task-count">3 tasks remianing</p>
