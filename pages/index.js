@@ -1,32 +1,32 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className='container'>
       <Head>
         <title>Todo list</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;700;900&display=swap" rel="stylesheet"></link>
       </Head>
-      <h1 className={styles['title']}>Stuff I need to do</h1>
+      <h1 className='title'>Stuff I need to do</h1>
       
-      <div className={styles['all-tasks']}>
+      <div className='all-tasks'>
         <h2 className="task-list-title">My lists</h2>
-        <ul className={styles['task-list']}>
-          <li className={styles['active-list']}>Youtube</li>
+        <ul className='task-list'>
+          <li className='active-list'>Youtube</li>
           <li>Work</li>
           <li>Grocery</li>
         </ul>
 
         <form action="">
-          <input type="text" className="new-list" name="" id="" placeholder="new list name" aria-label="new list name" />
+          <input type="text" className='new-list' name="" id="" placeholder="new list name" aria-label="new list name" />
           <button className="btn btn-list" aria-label="create new list">+</button>
         </form>
       </div>
 
-      <div className={styles['todo-list']}>
+      <div className='todo-list'>
         <div className="todo-header">
           <h2 className="list-title">Youtube</h2>
           <p className="task-count">3 tasks remianing</p>
