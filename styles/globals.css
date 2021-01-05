@@ -3,8 +3,6 @@
   --clr-light: #f4f4f4;
   --clr-dark: #333;
   --clr-warning: rgb(99, 36, 36);
-
-  font-size: 10px;
 }
 
 html,
@@ -12,7 +10,7 @@ body {
   margin: 0;
   font-family: 'Work Sans', sans-serif;
   font-weight: 300;
-  font-size: 1.5rem;
+  font-size: 15px;
   background-color: var(--clr-primary);
   color: var(--clr-light);
 }

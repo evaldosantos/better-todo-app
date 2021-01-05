@@ -14,8 +14,8 @@ export default function Home() {
       
       <div className={styles['all-tasks']}>
         <h2 className="task-list-title">My lists</h2>
-        <ul className="task-list">
-          <li className="active-list">Youtube</li>
+        <ul className={styles['task-list']}>
+          <li className={styles['active-list']}>Youtube</li>
           <li>Work</li>
           <li>Grocery</li>
         </ul>
