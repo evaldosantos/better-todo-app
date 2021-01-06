@@ -15,13 +15,13 @@ export default function Home() {
       <div className='all-tasks'>
         <h2 className="task-list-title">My lists</h2>
         <ul className='task-list'>
-          <li className='active-list'>Youtube</li>
-          <li>Work</li>
-          <li>Grocery</li>
+          <li className='list-name active-list'>Youtube</li>
+          <li className="list-name">Work</li>
+          <li className="list-name">Grocery</li>
         </ul>
 
         <form action="">
-          <input type="text" className='new-list' name="" id="" placeholder="new list name" aria-label="new list name" />
+          <input type="text" className='new new-list' name="" id="" placeholder="new list name" aria-label="new list name" />
           <button className="btn btn-list" aria-label="create new list">+</button>
         </form>
       </div>
@@ -55,17 +55,19 @@ export default function Home() {
 
           <div className="new-task-creator">
             <form action="">
-              <input type="text" name="" id="" className="new-task" placeholder="new task name" aria-label="new task name" />
+              <input type="text" name="" id="" className="new new-task" placeholder="new task name" aria-label="new task name" />
               <button className="btn btn-task" aria-label="create new task">+</button>
             </form>
+          </div>
+
+          <div className="delete-stuff">
+            <button className="btn delete">Clear completed tasks</button>
+            <button className="btn delete">Delete list</button>
           </div>
         </div>
 
 
-        <div className="delete-stuff">
-          <button className="btn delete">Clear completed tasks</button>
-          <button className="btn delete">Delete list</button>
-        </div>
+        
       </div>
 
     </div>
