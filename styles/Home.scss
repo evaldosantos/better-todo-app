@@ -12,7 +12,7 @@
   font-size: calc(7vw + 2rem);
   font-weight: 900;
   color: rgba(0,0, 0, 0.1);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   margin: -0.3em 0 0.5em; 
 }
 
@@ -35,6 +35,10 @@
   opacity: 0.7;
 }
 
+form {
+  display: flex;
+}
+
 .btn {
   cursor: pointer;
   background: 0;
@@ -43,41 +47,52 @@
   color: inherit;
 }
 
-form {
-  display: flex;
-
-  input.new {
-    background: transparent;
-    border: 0;
-    color: inherit;
-    border-bottom: 1px solid currentColor;
-    font-size: inherit;
-    outline: none;
-    padding: 0.25em;
-    transition: border-bottom 150ms ease-in;
-    order: 2;
-  }
-
-  input.new:focus {
-    border-bottom-width: 3px;
-  }
-  
-  input.new:focus::placeholder {
-    color: black;
-    opacity: 0.2;
-  }
-  
-  button.btn {
-    font-size: 1.5rem;
-    font-weight: 900;
-    margin-right: 0.25em;
-  }
-  
-  button.btn:hover {
-    opacity: 0.7;
-  }
+.btn.create {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-right: 0.25em;
+  transition: opacity 250ms ease-in;
 }
 
+.btn.create:hover {
+  opacity: 0.7;
+}
+
+.btn.delete {
+  opacity: 0.7;
+  font-size: 1rem;
+  transition: color 200ms;
+}
+
+.btn.delete:hover {
+  color: var(--clr-warning);
+}
+
+input.new {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  border-bottom: 1px solid currentColor;
+  font-size: inherit;
+  outline: none;
+  padding: 0.25em;
+  transition: border-bottom 150ms ease-in;
+  order: 2;
+}
+
+input.new::placeholder {
+  color: inherit;
+  opacity: 0.4;
+}
+
+input.new:focus {
+  border-bottom-width: 3px;
+}
+  
+input.new:focus::placeholder {
+  opacity: 0.2;
+}
+  
 .active-list {
   font-weight: 700;
 }
@@ -99,12 +114,12 @@ form {
 }
 
 .list-title {
-  margin: 0;
   margin-right: 0 1em 0 0;
 }
 
 .task-count {
   margin: 0;
+  font-size: 1rem;
 }
 
 .todo-body {
@@ -112,9 +127,35 @@ form {
   position: relative;
 }
 
+.new-task-creator .btn {
+  color: var(--clr-primary);
+}
+
 [type='checkbox'] {
   opacity: 0;
   position: absolute;
+}
+
+.task label {
+  display: flex-inline;
+  align-items: center;
+  position: relative;
+}
+
+.task {
+  position: relative;
+  margin-bottom: 1.25em;
+}
+
+.task::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: -0.5em;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.1;
 }
 
 .custom-checkbox {
@@ -146,28 +187,6 @@ form {
   opacity: 0.5;
 }
 
-.task label {
-  display: flex-inline;
-  align-items: center;
-  position: relative;
-}
-
-.task {
-  position: relative;
-  margin-bottom: 1.25em;
-}
-
-.task::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  left: 0;
-  bottom: -0.5em;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.1;
-}
-
 .task label::after {
   content: '';
   position: absolute;
@@ -184,10 +203,6 @@ form {
 [type='checkbox']:checked + label::after {
   transform: scaleX(1);
   transform-origin: left;
-}
-
-.new-task-creator .btn {
-  color: var(--clr-primary);
 }
 
 .delete-stuff {

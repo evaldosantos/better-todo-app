@@ -22,7 +22,7 @@ export default function Home() {
 
         <form action="">
           <input type="text" className='new new-list' name="" id="" placeholder="new list name" aria-label="new list name" />
-          <button className="btn btn-list" aria-label="create new list">+</button>
+          <button className="btn create btn-list" aria-label="create new list">+</button>
         </form>
       </div>
 
@@ -40,14 +40,14 @@ export default function Home() {
                 record todo list video</label>
             </div>
             <div className="task">
-              <input type="checkbox" name="" id="task-1"/>
-              <label htmlFor="task-1">
+              <input type="checkbox" name="" id="task-2"/>
+              <label htmlFor="task-2">
                 <span className="custom-checkbox"></span>
                 edit todo list video</label>
             </div>
             <div className="task">
-              <input type="checkbox" name="" id="task-1"/>
-              <label htmlFor="task-1">
+              <input type="checkbox" name="" id="task-3"/>
+              <label htmlFor="task-3">
                 <span className="custom-checkbox"></span>
                 publish todo list video</label>
             </div>
@@ -56,7 +56,7 @@ export default function Home() {
           <div className="new-task-creator">
             <form action="">
               <input type="text" name="" id="" className="new new-task" placeholder="new task name" aria-label="new task name" />
-              <button className="btn btn-task" aria-label="create new task">+</button>
+              <button className="btn create btn-task" aria-label="create new task">+</button>
             </form>
           </div>
 
