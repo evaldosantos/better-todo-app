@@ -1,14 +1,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-
-const OAUTH_URL =
-  `https://accounts.google.com/o/oauth2/v2/auth?` +
-  `scope=${process.env.SCOPE}&` +
-  `include_granted_scopes=true&` +
-  `response_type=token&` +
-  `redirect_uri=${process.env.REDIRECT_URI}&` +
-  `client_id=${process.env.CLIENT_ID}`;
+import { GoogleLogin } from "../components/google-login";
 
 export default function Home() {
   const router = useRouter();
@@ -23,6 +16,10 @@ export default function Home() {
     router.push("/");
   }, [access_token]);
 
+  function onGoogleLoginSucess(userData) {
+    console.log(userData);
+  }
+
   return (
     <div className="container">
       <Head>
@@ -36,9 +33,7 @@ export default function Home() {
       </Head>
       <h1 className="title">Stuff I need to do</h1>
 
-      <a href={OAUTH_URL} target="_blank">
-        Login with Google
-      </a>
+      <GoogleLogin onSuccess={onGoogleLoginSucess} />
 
       <div className="all-tasks">
         <h2 className="task-list-title">My lists</h2>
