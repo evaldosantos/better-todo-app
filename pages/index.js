@@ -1,25 +1,7 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 import Head from "next/head";
 import { GoogleLogin } from "../components/google-login";
 
 export default function Home() {
-  const router = useRouter();
-
-  const { access_token } = router.query;
-
-  useEffect(() => {
-    const url = new URL(window.location.href.replace(/\/#/, "?"));
-    const queryParams = new URLSearchParams(url.search);
-    const currentToken = queryParams.get("access_token");
-    window.localStorage.setItem("app-access-token", currentToken);
-    router.push("/");
-  }, [access_token]);
-
-  function onGoogleLoginSucess(userData) {
-    console.log(userData);
-  }
-
   return (
     <div className="container">
       <Head>
@@ -32,8 +14,6 @@ export default function Home() {
         ></link>
       </Head>
       <h1 className="title">Stuff I need to do</h1>
-
-      <GoogleLogin onSuccess={onGoogleLoginSucess} />
 
       <div className="all-tasks">
         <h2 className="task-list-title">My lists</h2>

@@ -1,75 +1,78 @@
 import { useEffect, useState } from "react";
 import { useScript } from "../hooks/useScript";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import * as GoogleAuth from "../lib/google";
 
-const OAUTH_URL =
-  `https://accounts.google.com/o/oauth2/v2/auth?` +
-  `scope=${process.env.NEXT_PUBLIC_SCOPE}&` +
-  `include_granted_scopes=true&` +
-  `response_type=token&` +
-  `redirect_uri=${process.env.NEXT_PUBLIC_REDIRECT_URI}&` +
-  `client_id=${process.env.NEXT_PUBLIC_CLIENT_ID}`;
+/* 
+  <GoogleLogin
+    render={({ handleSignIn, userData, handleSignOut }) =>
+      userData ? (
+        <button onClick={handleSignOut}>Logout</button>
+      ) : (
+        <button onClick={handleSignIn}>Login</button>
+      )
+    }
+  /> 
+*/
 
 export function GoogleLogin({
   buttonText = "Login with Google",
-  onSuccess = (i) => i,
-  onFailure = (i) => i,
+  onLoginFailure = (i) => i,
+  loginHandler = (i) => i,
+  logoutHandler = (i) => i,
+  storageKey = "bta-user-data",
   render,
 }) {
   const scriptStatus = useScript("https://apis.google.com/js/api.js");
+  const [userData, setUserData] = useLocalStorage(storageKey, {});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  async function initClient() {
+  const updateSigninStatus = (isSignedIn) => {
     try {
-      await gapi.client.init({
-        apiKey: process.env.NEXT_PUBLIC_API_KEY,
-        clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
-        discoveryDocs: [process.env.NEXT_PUBLIC_DISCOVERY_DOCS],
-        scope: process.env.NEXT_PUBLIC_SCOPES,
-      });
-      // Listen for sign-in state changes.
-      gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-      // Handle the initial sign-in state.
-      updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-    } catch (error) {
-      console.log(error);
+      if (isSignedIn) {
+        setUserData(GoogleAuth.userData());
+      } else {
+        setUserData(null);
+        onLoginFailure();
+      }
+    } catch (e) {
+      console.log(e);
+      onLoginFailure(e);
     }
-  }
-
-  function updateSigninStatus(isSignedIn) {
-    if (isSignedIn) {
-      onSuccess(
-        gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse()
-      );
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }
+  };
 
   /**
    *  Sign in the user upon button click.
    */
   function handleSignIn(event) {
-    gapi.auth2.getAuthInstance().signIn();
+    GoogleAuth.signIn();
+    loginHandler();
   }
 
   /**
    *  Sign out the user upon button click.
    */
   function handleSignOut(event) {
-    gapi.auth2.getAuthInstance().signOut();
+    GoogleAuth.signOut();
+    logoutHandler;
   }
 
   useEffect(() => {
     if (scriptStatus !== "ready") return;
-    gapi.load("client:auth2", initClient);
+
+    GoogleAuth.onLoad(updateSigninStatus, {
+      apiKey: process.env.NEXT_PUBLIC_API_KEY,
+      clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
+      discoveryDocs: [process.env.NEXT_PUBLIC_DISCOVERY_DOCS],
+      scope: process.env.NEXT_PUBLIC_SCOPES,
+    });
   }, [scriptStatus]);
 
   if (render) {
     return render({
       handleSignIn,
       handleSignOut,
+      userData,
     });
   } else {
     return (
